@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+
+  <title>Teste Leaflet</title>
+
+  <style>
+    body {
+      text-align: center;
+      background-color: #dfdfdf;
+    }
+    .container-mapa {
+      width: 600px;
+      height: 600px;
+      margin: auto;
+      text-align: center;
+      border: 3px solid gray;
+    }
+
+    #mapid {
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Teste de renderização com mapa</h1>
+  <div class="container-mapa">
+    <div id="mapid"></div>
+  </div>
+
+  <script type="text/javascript" src="aruja-bounds.js"></script>
+  <script type="text/javascript">
+
+    const arujaCoordenadas = [-23.394827, -46.3258021]
+    const ZOOM = 12
+    const mymap = L.map('mapid').setView(arujaCoordenadas, ZOOM)
+
+    // Renderiza mapa. Os mapas podem ser incluídos separadamente, desde que estejam sob a licença Open Street Maps.
+    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    }).addTo(mymap)
+
+    //Adicionar marcador
+    const marker = L.marker(arujaCoordenadas).addTo(mymap)
+
+    //TopoJSON devolve array com LONGITUDE e LATITUDE. Inverter as posições é necessário
+    const coordinatesAdjusted = aruja.geometry.coordinates[0].map(coordinate => coordinate.reverse())
+    // Desenha município no mapa
+    L.polygon(coordinatesAdjusted).addTo(mymap)
+
+
+    // OUTROS TIPOS DE MAPA
+
+    /*var CartoDB_VoyagerNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    });*/
+
+    //Nomes de ruas principais, sem mais detalhes
+    /* 
+    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    })
+    */
+
+    //Mapa padrão
+    /*L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    })
+    */
+
+  </script>
+</body>
+
+</html>
