@@ -37,10 +37,10 @@
 	transition: all 0.3s ease-in-out;
 }
 .answer-option > input[type='radio'] + div.text-option {
-	height: 100px;
+	height: 80px;
 }
 .answer-option > input[type='radio'] + div.video-option {
-	height: 200px;
+	height: 120px;
 }
 .answer-option > input[type='radio']:checked + div.animation {
 	animation: pulse;
@@ -63,7 +63,7 @@
 	width: 100%;
 	filter: sepia(0.7) opacity(0.3) blur(1px);
 	transition: all 0.3s ease-in-out;
-	top: -25%;
+	top: -40px;
 }
 .answer-option > input[type='radio']:checked + div > video {
 	filter: sepia(0.2) opacity(1);
@@ -82,12 +82,11 @@
 .answer-option > input[type='radio'] + div > label > span {
 	text-align: center;
 	text-shadow: 0 0 3px #333;
-	font-size: 1.75rem;
+	font-size: 1.25rem;
 	color: var(--text-color);
 }
 .answer-option > input[type='radio']:checked + div > label > span {
 	font-weight: bold;
-	font-size: 1.75rem;
 	color: var(--text-color-active);
 }
 
